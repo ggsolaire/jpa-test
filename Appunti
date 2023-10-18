@@ -1,0 +1,56 @@
+Framework - Serve a semplificare dei compiti
+
+Spring - Framework, implementa vari framework come Spring Data, Security, Web
+
+Spring Data include:
+1. ORM - Object Relation Mapper, ovvero la parte che mappa fisicamente la tabella sul DB con l'entità di Java (Hibernate)
+
+2. JPA - Parla con l'ORM per fare le operazioni di CRUD (Create, Read, Update, Delete) e altre operazioni
+
+Data contiene quindi tutto ciò che è necessario alla comunicazione fra Java e il Database
+
+
+Spring Boot - Costruito attorno al Framework Spring
+
+
+Esempio: dovendo fare query, getter, setter ecc. a mano.
+Un Framework ha le funzionalità più comuni
+
+Applicativi Java deployato su un Web Server, col pacchetto completo.
+Spring genera dei war, come i jar
+
+Spring Web crea un server Tomcat per il deployement in locale
+Deployati su server come Tomcat
+
+
+Polimorfismo - Overload, overriding
+Ereditarietà
+
+Entità utente
+Notazione table (Name user)
+
+Per usare il JPA creo prima una classe dell'entità interessata
+Una delle cose da definire all'interno della classe:
+1. Dire a Spring Data JPA che la classe deve essere una table nel db
+2. Dobbiamo specificare l'entità che deve essere convertita
+3. Avere proprietà, come nome id ecc., usiamo notazioni per dire che queste proprietà si trovano all'interno della table, convertendole al DB
+
+Una volta configurato tutto ciò, vedremo quindi nel DB la tabella corrispondente
+
+
+ARCHITETTURA
+API Layer - Classe che ha funzione di API
+GET Riceve informazioni
+POST Salva nuove risorse
+PUT Aggiorna risorse
+DELETE Elimina
+
+PARLA CON
+
+Service Layer - Classe che ha funzione dei servizi, responsabile della BUSINESS LOGIC
+
+PARLA CON
+
+Data Access Layer -  Classe che comunica col DB
+
+
