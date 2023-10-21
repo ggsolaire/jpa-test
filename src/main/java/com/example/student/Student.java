@@ -1,5 +1,6 @@
 package com.example.student;
 //Maven Dependency: Jakarta.persistance-api
+import com.fasterxml.jackson.annotation.JsonFormat;
 import jakarta.persistence.*;
 import org.springframework.cglib.core.Local;
 
@@ -27,7 +28,10 @@ public class Student {
     )
     private Long id;
     private String nome;
+
     private LocalDate compleanno;
+
+    private String email;
 
     //Questa notazione ci dice che si tratta di un'informazione ricavabile, in questo caso ad esempio dal compleanno
     @Transient
@@ -38,12 +42,14 @@ public class Student {
         id = null;
         nome = "";
         compleanno = null;
+        email = "";
 //        anni = null; Rimosso per il Transient
     }
-    public Student(Long id, String nome, LocalDate compleanno /*Integer anni*/) {
+    public Student(Long id, String nome, LocalDate compleanno, String email) {
         this.id = id;
         this.nome = nome;
         this.compleanno = compleanno;
+        this.email = email;
 //        this.anni = anni;
     }
 
@@ -78,5 +84,13 @@ public class Student {
 
     public void setAnni(Integer anni) {
         this.anni = anni;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
     }
 }

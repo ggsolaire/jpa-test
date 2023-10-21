@@ -41,8 +41,9 @@ Una volta configurato tutto ciò, vedremo quindi nel DB la tabella corrispondent
 ARCHITETTURA
 API Layer - Classe che ha funzione di API
 GET Riceve informazioni
-POST Salva nuove risorse
-PUT Aggiorna risorse
+POST Salva nuove risorse    Necessita tutte le informazioni per aggiornare table su un id
+PUT Aggiorna risorse        Come sopra
+PATCH Aggiorna risorse ma non richiede necessariamente il reinserimento di tutti i dati
 DELETE Elimina
 
 PARLA CON
@@ -53,4 +54,20 @@ PARLA CON
 
 Data Access Layer -  Classe che comunica col DB
 
+Creare interfaccia del service dove definire i metodi, poi creare classe che implementa quel servizio, implemento i metodi ma quando viene
+richiamato faccio AutoWired dell'interfaccia
+
+NOTAZIONE SERVICE
+Fa capire a JPA che quella è una classe che deve implementare qualcosa
+
+SOLID
+Insieme di principi:
+
+S - Single responsabilty: Controller richiama le funzioni da Service, che a sua volta implementa quella della Repository
+Controller -> Service -> Repository, restituisce un metodo che viene implementato quindi da service prima di essere usto
+
+BEAN - Qualcosa di istanzibile, possono avere Scope in base all'utilizzo
+AUTOWIRED - Crea un Bean di tipo Singleton, ovvero lo crea a runtime una singola volta e utilizza quell'istanza per tutto il runtime
+
+BUSINESS LOGIC
 
