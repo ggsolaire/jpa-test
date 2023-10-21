@@ -1,10 +1,9 @@
 package com.example.student;
 
+import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import java.time.LocalDate;
-import java.time.Month;
 import java.util.List;
 
 //API LAYER
@@ -38,6 +37,13 @@ public class StudentController {
     //Così facendo anziché inserirlo nel Body della request (JSON) lo scrivo direttamente nel path
     public void removeStudent(@PathVariable Long id) {
         studentService.removeStudent(id);
+    }
+
+    @PutMapping("/studentAPI/{id}")
+    public void updateStudent(@PathVariable("id") Long id,
+                              @RequestParam(required = false) String nome,
+                              @RequestParam(required = false) String email) {
+        studentService.updateStudent(id, nome, email);
     }
 
     //Ricorda che il controller deve solo richiamare dei metodi implementati nel Service

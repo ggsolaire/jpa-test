@@ -1,9 +1,11 @@
 package com.example.student;
 
+import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Objects;
 import java.util.Optional;
 
 //SERVICE LAYER
@@ -45,4 +47,30 @@ public class StudentService {
         }
     }
 
+    //Questa notazione, l'entità va in un manage state
+    @Transactional
+    public void updateStudent(Long id,
+                              String nome,
+                              String email) {
+
+        //salvo lo studente con x id, o lancio errore in caso non esista
+        Student student = studentRepository.findById(id).orElseThrow(() -> new IllegalStateException("Questo studente non esiste"));
+
+        //Se il nome inserito non è nullo, vuoto e non corrisponde a quello già presente all'id, allora modifica il nome della riga id
+        if (nome != null && !nome.isEmpty() && !Objects.equals(student.getNome(), nome)) {
+            student.setNome(nome);
+        }
+
+        //Come sopra ma per email
+        if (email != null && !email.isEmpty() && !Objects.equals(student.getEmail(), email)) {
+
+            //Controllo che la mail non sia presa, se è libera procedo quindi con l'update dei dati
+            Optional<Student> studentOptional = studentRepository.findStudentByEmail(email);
+            if (studentOptional.isPresent()) {
+                throw new IllegalStateException("This email is taken");
+            }
+            student.setEmail(email);
+        }
+
+    }
 }
